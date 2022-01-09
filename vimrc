@@ -69,3 +69,32 @@ endif
 
 " nnoremap <C-[> :execute "vertical ptag " . expand("<cword>")<CR>
 " nnoremap <C-[> <esc>:vs<CR><C-]>
+
+function SetSpaceIndentation(sp)
+	let &softtabstop=a:sp
+	let &tabstop=a:sp
+	let &shiftwidth=a:sp
+	set expandtab
+	echo('Indent with space: ' . a:sp)
+endfunction
+
+function SetTabIndentation(tabwidth)
+	let &softtabstop=a:tabwidth
+	let &tabstop=a:tabwidth
+	let &shiftwidth=a:tabwidth
+	set noexpandtab
+	echo('Indent with tab: tabwidth: ' . a:tabwidth)
+endfunction
+
+inoremap <f2>2 <esc>:call SetSpaceIndentation(2)<enter>
+nnoremap <f2>2      :call SetSpaceIndentation(2)<enter>
+inoremap <f2>4 <esc>:call SetSpaceIndentation(4)<enter>
+nnoremap <f2>4      :call SetSpaceIndentation(4)<enter>
+
+inoremap <f3>4 <esc>:call SetTabIndentation(4)<enter>
+nnoremap <f3>4      :call SetTabIndentation(4)<enter>
+inoremap <f3>8 <esc>:call SetTabIndentation(8)<enter>
+nnoremap <f3>8      :call SetTabIndentation(8)<enter>
+
+" set list
+" set listchars=tab:!.
